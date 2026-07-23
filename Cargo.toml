@@ -1,0 +1,56 @@
+[workspace]
+resolver = "2"
+members = [
+    "core/liauth-core",
+    "core/liauth-crypto",
+    "core/liauth-vault",
+    "core/liauth-import",
+    "core/liauth-sync",
+    "core/liauth-ffi",
+    "windows",
+]
+
+[workspace.package]
+version = "2.0.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/liwidale/liauth"
+authors = ["liwidale"]
+rust-version = "1.85"
+
+[workspace.dependencies]
+liauth-core = { path = "core/liauth-core" }
+liauth-crypto = { path = "core/liauth-crypto" }
+liauth-vault = { path = "core/liauth-vault" }
+liauth-import = { path = "core/liauth-import" }
+liauth-sync = { path = "core/liauth-sync" }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+uuid = { version = "1", features = ["v4", "serde"] }
+hmac = "0.12"
+sha1 = "0.10"
+sha2 = "0.10"
+aes-gcm = "0.10"
+argon2 = "0.5"
+scrypt = { version = "0.11", default-features = false }
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+rand = "0.8"
+zeroize = { version = "1", features = ["derive"] }
+base64 = "0.22"
+percent-encoding = "2"
+p256 = { version = "0.13", features = ["ecdsa"] }
+ciborium = "0.2"
+hkdf = "0.12"
+spake2 = "0.4"
+mdns-sd = "0.13"
+uniffi = "0.29"
+fuzzy-matcher = "0.3"
+ureq = { version = "2", default-features = false, features = ["tls"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

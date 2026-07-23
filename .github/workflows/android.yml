@@ -1,0 +1,49 @@
+name: Android
+run-name: Android ${{ github.ref_name }}
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-linux-android,armv7-linux-androideabi,x86_64-linux-android
+      - uses: Swatinem/rust-cache@v2
+      - uses: gradle/actions/setup-gradle@v6
+      - name: Install NDK
+        run: |
+          echo "y" | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "ndk;27.2.12479018" > /dev/null
+          echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/27.2.12479018" >> "$GITHUB_ENV"
+      - name: Install cargo-ndk
+        run: cargo install cargo-ndk --locked
+      - name: Generate icons
+        run: |
+          if [ -s branding/logo.png ]; then
+            sudo apt-get update && sudo apt-get install -y imagemagick
+            bash scripts/generate-icons.sh
+          fi
+      - name: Build APK
+        working-directory: android
+        run: gradle assembleRelease
+      - name: Name the binary
+        run: |
+          mkdir -p dist
+          cp android/app/build/outputs/apk/release/app-release.apk dist/LiAuth.apk
+      - uses: actions/upload-artifact@v7
+        with:
+          name: LiAuth-android
+          path: dist/LiAuth.apk
+          if-no-files-found: error

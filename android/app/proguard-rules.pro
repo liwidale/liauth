@@ -1,0 +1,4 @@
+-keep class uniffi.** { *; }
+-keep class com.sun.jna.** { *; }
+-keepclassmembers class * extends com.sun.jna.Structure { *; }
+-dontwarn java.awt.*

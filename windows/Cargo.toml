@@ -1,0 +1,38 @@
+[package]
+name = "liauth-windows"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "LiAuth"
+path = "src/main.rs"
+
+[dependencies]
+liauth-core = { workspace = true }
+liauth-crypto = { workspace = true }
+liauth-vault = { workspace = true }
+liauth-import = { workspace = true }
+liauth-sync = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+eframe = { version = "0.32", default-features = false, features = ["glow", "default_fonts", "wayland", "x11"] }
+egui = "0.32"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+rqrr = "0.10"
+qrcode = { version = "0.14", default-features = false }
+rfd = "0.15"
+arboard = { version = "3", features = ["image-data"] }
+keyring = { version = "3", features = ["windows-native", "apple-native", "linux-native"] }
+directories = "6"
+raw-window-handle = "0.6"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.61", features = ["Win32_Foundation", "Win32_UI_WindowsAndMessaging", "Win32_UI_Input_KeyboardAndMouse", "Win32_Globalization"] }
+
+[target.'cfg(windows)'.build-dependencies]
+winresource = "0.1"
