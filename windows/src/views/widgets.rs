@@ -303,7 +303,7 @@ pub fn text_field(
                     egui::TextEdit::singleline(value)
                         .hint_text(RichText::new(hint).color(palette.text_tertiary))
                         .password(password && !revealed)
-                        .frame(false)
+                        .frame(egui::Frame::new().inner_margin(egui::Margin::symmetric(4, 2)))
                         .desired_width(field_width),
                 );
                 if password {

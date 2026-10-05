@@ -212,7 +212,7 @@ struct SettingsView: View {
                         .foregroundColor(Palette.textPrimary)
                 }
                 settingRow(localization.t("settings.version")) {
-                    Text("2.0.0")
+                    Text("1.0.1")
                         .font(.inter(14))
                         .foregroundColor(Palette.textSecondary)
                         .onTapGesture {

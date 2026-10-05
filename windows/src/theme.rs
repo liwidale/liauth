@@ -212,7 +212,7 @@ pub fn apply(ctx: &egui::Context, dark: bool, animations: bool) {
     visuals.extreme_bg_color = palette.surface_raised;
     visuals.text_cursor.stroke = Stroke::new(2.0, palette.text_primary);
 
-    let mut style = (*ctx.style()).clone();
+    let mut style = (*ctx.global_style()).clone();
     style.visuals = visuals;
     style.spacing.item_spacing = egui::vec2(12.0, 12.0);
     style.spacing.button_padding = egui::vec2(16.0, 10.0);
@@ -237,7 +237,7 @@ pub fn apply(ctx: &egui::Context, dark: bool, animations: bool) {
     ]
     .into();
 
-    ctx.set_style(style);
+    ctx.set_global_style(style);
 }
 
 pub fn palette(dark: bool) -> Palette {

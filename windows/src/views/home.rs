@@ -109,22 +109,18 @@ pub fn show(app: &mut LiAuthApp, ui: &mut Ui) {
                         token_card(app, ui, row, &mut actions);
                         ui.add_space(4.0);
                     }
-                    ui.add_space(if app.home.selection.is_some() { 72.0 } else { 24.0 });
+                    ui.add_space(24.0);
                 });
 
             for action in actions {
                 apply_action(app, ui.ctx(), action);
             }
         });
-
-    if app.home.selection.is_some() {
-        selection_bar(app, ui.ctx());
-    }
 }
 
 /// Bottom action bar shown while batch selection is active.
-fn selection_bar(app: &mut LiAuthApp, ctx: &egui::Context) {
-    let palette = app.palette(ctx);
+pub fn selection_bar(app: &mut LiAuthApp, ui: &mut Ui) {
+    let palette = app.palette(ui.ctx());
     let selected_count = app.home.selection.as_ref().map(|s| s.len()).unwrap_or(0);
 
     let categories: Vec<(Uuid, String)> = app
@@ -142,14 +138,14 @@ fn selection_bar(app: &mut LiAuthApp, ctx: &egui::Context) {
         })
         .unwrap_or_default();
 
-    egui::TopBottomPanel::bottom("selection-bar")
+    egui::Panel::bottom("selection-bar")
         .frame(
             egui::Frame::new()
                 .fill(palette.glass)
                 .stroke(egui::Stroke::new(1.0, palette.border_strong))
                 .inner_margin(egui::Margin::symmetric(20, 12)),
         )
-        .show(ctx, |ui| {
+        .show(ui, |ui| {
             ui.horizontal(|ui| {
                 ui.label(
                     RichText::new(app.tf("batch.selected", &[("count", &selected_count.to_string())]))

@@ -160,7 +160,7 @@ impl LiAuthApp {
         match self.prefs.theme_mode() {
             ThemeMode::Dark => true,
             ThemeMode::Light => false,
-            ThemeMode::System => ctx.style().visuals.dark_mode || system_prefers_dark(ctx),
+            ThemeMode::System => ctx.global_style().visuals.dark_mode || system_prefers_dark(ctx),
         }
     }
 
@@ -274,12 +274,7 @@ impl LiAuthApp {
             i.raw
                 .dropped_files
                 .iter()
-                .filter_map(|f| {
-                    f.bytes
-                        .as_ref()
-                        .map(|b| b.to_vec())
-                        .or_else(|| f.path.as_ref().and_then(|p| std::fs::read(p).ok()))
-                })
+                .filter_map(|f| f.bytes().ok())
                 .collect()
         });
         for bytes in dropped {
@@ -289,13 +284,16 @@ impl LiAuthApp {
 }
 
 impl eframe::App for LiAuthApp {
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         let dark = self.is_dark(ctx);
         theme::apply(ctx, dark, self.prefs.animations);
         self.handle_capture_protection();
         self.handle_auto_lock(ctx);
         self.handle_dropped_files(ctx);
+    }
 
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        let ctx = &ui.ctx().clone();
         let palette = self.palette(ctx);
 
         // Micro-animation: fade the main screen in after a transition
@@ -318,9 +316,14 @@ impl eframe::App for LiAuthApp {
             None => 1.0,
         };
 
+        // Panels must claim their space before the central panel fills the rest.
+        if self.screen == Screen::Home && self.home.selection.is_some() {
+            views::home::selection_bar(self, ui);
+        }
+
         egui::CentralPanel::default()
             .frame(egui::Frame::new().fill(palette.background))
-            .show(ctx, |ui| {
+            .show(ui, |ui| {
                 ui.multiply_opacity(fade);
                 match self.screen {
                     Screen::Onboarding => views::lock::onboarding(self, ui),

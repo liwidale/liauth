@@ -45,7 +45,3 @@ jobs:
       - uses: rustsec/audit-check@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # ttf-parser is unmaintained, not vulnerable. It reaches us only through
-          # egui's font rasterizer, which parses the fonts bundled into the app.
-          # Drop this once the Windows app moves to an egui release without it.
-          ignore: RUSTSEC-2026-0192

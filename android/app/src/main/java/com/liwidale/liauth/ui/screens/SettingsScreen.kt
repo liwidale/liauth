@@ -52,7 +52,7 @@ import com.liwidale.liauth.vault.VaultViewModel
 
 private const val PROJECT_URL = "https://github.com/liwidale/liauth"
 private const val DEVELOPER_URL = "https://github.com/liwidale"
-private const val VERSION = "2.0.0"
+private const val VERSION = "1.0.1"
 
 @Composable
 fun SettingsScreen(
