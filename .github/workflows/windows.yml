@@ -1,0 +1,31 @@
+name: Windows
+run-name: Windows ${{ github.ref_name }}
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Generate icons
+        shell: bash
+        run: |
+          if [ -s branding/logo.png ]; then
+            bash scripts/generate-icons.sh
+          fi
+      - name: Build
+        run: cargo build --release -p liauth-windows
+      - uses: actions/upload-artifact@v7
+        with:
+          name: LiAuth-windows-x64
+          path: target/release/LiAuth.exe
+          if-no-files-found: error

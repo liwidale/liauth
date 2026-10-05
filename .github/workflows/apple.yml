@@ -1,0 +1,71 @@
+name: Apple
+run-name: Apple ${{ github.ref_name }}
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install tools
+        run: brew install xcodegen
+      - name: Generate icons
+        run: |
+          if [ -s branding/logo.png ]; then
+            brew install imagemagick
+            bash scripts/generate-icons.sh
+          fi
+      - name: Build core framework
+        run: bash apple/scripts/build-xcframework.sh
+      - name: Generate Xcode project
+        working-directory: apple
+        run: xcodegen generate
+      - name: Build macOS app
+        working-directory: apple
+        run: |
+          xcodebuild -project LiAuth.xcodeproj -scheme LiAuth-macOS -configuration Release \
+            -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO build
+      - name: Ad-hoc sign
+        run: |
+          APP="apple/DerivedData/Build/Products/Release/LiAuth-macOS.app"
+          find "$APP/Contents/Frameworks" \( -name "*.framework" -o -name "*.dylib" \) -print0 2>/dev/null \
+            | while IFS= read -r -d '' item; do
+                codesign --force --timestamp=none --sign - "$item"
+              done
+          codesign --force --deep --timestamp=none --sign - "$APP"
+          codesign --verify --deep --strict "$APP"
+      - name: Package dmg
+        run: |
+          mkdir -p dist/dmg
+          cp -R apple/DerivedData/Build/Products/Release/LiAuth-macOS.app dist/dmg/LiAuth.app
+          ln -s /Applications dist/dmg/Applications
+          hdiutil create -volname LiAuth -srcfolder dist/dmg -ov -format UDZO dist/LiAuth-macOS.dmg
+      - name: Build iOS app
+        working-directory: apple
+        run: |
+          xcodebuild -project LiAuth.xcodeproj -scheme LiAuth-iOS -configuration Release \
+            -sdk iphoneos -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO build
+      - name: Package ipa
+        run: |
+          mkdir -p dist/Payload
+          cp -R apple/DerivedData/Build/Products/Release-iphoneos/LiAuth-iOS.app dist/Payload/
+          cd dist && zip -qr LiAuth-iOS.ipa Payload
+      - uses: actions/upload-artifact@v7
+        with:
+          name: LiAuth-macOS
+          path: dist/LiAuth-macOS.dmg
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v7
+        with:
+          name: LiAuth-iOS
+          path: dist/LiAuth-iOS.ipa
+          if-no-files-found: error

@@ -1,0 +1,30 @@
+[package]
+name = "liauth-ffi"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "liauth"
+crate-type = ["cdylib", "staticlib", "lib"]
+
+[[bin]]
+name = "uniffi-bindgen"
+path = "src/bin/uniffi_bindgen.rs"
+
+[dependencies]
+liauth-core = { workspace = true }
+liauth-crypto = { workspace = true }
+liauth-vault = { workspace = true }
+liauth-import = { workspace = true }
+liauth-sync = { workspace = true }
+uniffi = { workspace = true, features = ["cli"] }
+thiserror = { workspace = true }
+uuid = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+tempfile = "3"

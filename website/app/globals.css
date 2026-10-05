@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jb-mono), ui-monospace, "JetBrains Mono", monospace;
+}
+
+@theme {
+  --color-line: rgb(255 255 255 / 0.1);
+  --color-line-soft: rgb(255 255 255 / 0.06);
+  --color-fg: #ffffff;
+  --color-fg-2: #a3a3a3;
+  --color-fg-3: #737373;
+  --color-surface: #000000;
+  --color-surface-2: #0a0a0a;
+  --color-surface-3: #141414;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+:focus-visible {
+  outline: 1px solid #ffffff;
+  outline-offset: 3px;
+}
+
+[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Faint gray light on large surfaces — kept just above the noise floor. */
+.glow-hero {
+  background-image:
+    radial-gradient(55% 45% at 12% 0%, rgb(255 255 255 / 0.06), transparent 62%),
+    radial-gradient(55% 45% at 88% 0%, rgb(255 255 255 / 0.06), transparent 62%);
+}
+
+.glow-corner {
+  background-image: radial-gradient(
+    62% 85% at 88% 0%,
+    rgb(255 255 255 / 0.05),
+    transparent 58%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

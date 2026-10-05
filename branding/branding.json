@@ -1,0 +1,20 @@
+{
+  "appName": "LiAuth",
+  "appId": "com.liwidale.liauth",
+  "logo": "branding/logo.png",
+  "logoRequirements": {
+    "format": "png",
+    "size": "1024x1024",
+    "background": "transparent"
+  },
+  "wordmark": "branding/text.png",
+  "wordmarkRequirements": {
+    "format": "png",
+    "color": "white on transparent",
+    "usage": "tinted at runtime, shown on the home and lock screens"
+  },
+  "links": {
+    "project": "https://github.com/liwidale/liauth",
+    "developer": "https://github.com/liwidale"
+  }
+}
