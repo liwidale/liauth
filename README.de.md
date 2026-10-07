@@ -1,42 +1,43 @@
-<div align="center">
+<p align="center">
+  <img src=".github/assets/icon.png" width="96" height="96" alt="LiAuth">
+</p>
 
-# <img width="25%" height="1000" alt="text" src="branding/text.png" />
+<h1 align="center">LiAuth</h1>
 
+<p align="center">
+  <b>Deine Codes. Dein Gerät. Sonst nichts.</b><br>
+  Ein moderner Open-Source-Authenticator für Android, iOS, macOS und Windows.<br>
+  Offline-first, Ende-zu-Ende-verschlüsselt, gebaut um einen gemeinsamen Rust-Kern.
+</p>
 
-**Deine Codes. Dein Gerät. Sonst nichts.**
+<p align="center">
+  <a href="https://github.com/liwidale/liauth/releases/latest"><img src="https://img.shields.io/github/v/release/liwidale/liauth?label=download&color=4c9dff" alt="Download"></a>
+  <a href="https://github.com/liwidale/liauth/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/liwidale/liauth/ci.yml?label=tests" alt="Tests"></a>
+  <img src="https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey" alt="Android, iOS, macOS and Windows">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/liwidale/liauth?color=3ad37e" alt="MIT License"></a>
+</p>
 
-Ein moderner Open-Source-Authenticator für Android, iOS, macOS und Windows.
-Offline-first, Ende-zu-Ende-verschlüsselt, gebaut um einen gemeinsamen Rust-Kern.
+<p align="center"><a href="README.md">English</a> · <a href="README.ru.md">Русский</a> · Deutsch · <a href="README.es.md">Español</a> · <a href="README.fr.md">Français</a> · <a href="README.zh.md">简体中文</a></p>
 
-[![CI](https://github.com/liwidale/liauth/actions/workflows/ci.yml/badge.svg)](https://github.com/liwidale/liauth/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](LICENSE)
-![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey)
+## Was du bekommst
 
-[English](README.md) · [Русский](README.ru.md) · Deutsch · [Español](README.es.md) · [Français](README.fr.md) · [简体中文](README.zh.md)
-
-</div>
-
----
-
-## Funktionen
-
-- **Einmalcodes** — zeit- und zählerbasierte Codes (RFC 6238 TOTP, RFC 4226 HOTP) sowie Steam-Codes. Alles wird automatisch aus QR-Codes und Links erkannt; Profis können beim manuellen Anlegen eigene Parameter setzen (8 Stellen, SHA-256/SHA-512, eigenes Intervall).
-- **System-Autofill auf Android** — die App registriert sich als Autofill-Dienst, sodass Einmalcodes direkt in Login-Formularen angeboten werden.
-- **Korrektur der Uhrabweichung** — ein eingebauter SNTP-Client misst, wie weit die Geräteuhr abweicht, und korrigiert die Code-Erzeugung, ohne die Systemuhr anzufassen.
-- **Tippfehler-tolerante Suche** — unscharfes Matching findet „GitHub" auch bei „gthub", die Treffer werden in der Liste hervorgehoben.
-- **Papierkorb** — gelöschte Konten liegen 30 Tage im Bereich „Zuletzt gelöscht", bevor sie endgültig verschwinden. Ein versehentlicher Tipp kostet keinen Zugang.
-- **Notizen und Wiederherstellungscodes** — jedes Konto kann freie Notizen und eine Liste von Wiederherstellungscodes tragen, verschlüsselt zusammen mit den Geheimnissen.
-- **Brute-Force-Schutz** — fehlgeschlagene Entsperrversuche lösen eine progressiv wachsende Verzögerung aus, die App-Neustarts übersteht.
-- **Offline-first** — keine Cloud, keine Server, keine Konten. Alle Daten bleiben auf dem Gerät.
-- **Starke Verschlüsselung** — der Tresor ist mit AES-256-GCM versiegelt; der Schlüssel wird per Argon2id aus deinem Passwort abgeleitet. Geräteschlüssel schützen Android Keystore, der Apple-Schlüsselbund mit Secure-Enclave-Biometrie und der Windows-Anmeldeinformationsspeicher.
-- **Biometrische Entsperrung** — Face ID auf iOS, Touch ID auf macOS, Fingerabdruck oder Gesicht auf Android, Schnellentsperrung auf Windows.
-- **Lokale Synchronisierung** — verschiebe Konten zwischen Geräten über dein eigenes WLAN. Geräte koppeln sich mit einem einmaligen 6-stelligen Code (SPAKE2), der Kanal ist Ende-zu-Ende mit AES-256-GCM verschlüsselt. Nichts verlässt je das lokale Netz.
-- **Verschlüsselte Sicherungen** — exportiere und importiere passwortgeschützte Sicherungsdateien, lege nach jeder Änderung automatisch eine verschlüsselte Kopie in einem Ordner deiner Wahl ab oder schiebe Sicherungen per WebDAV auf deine eigene Nextcloud/NAS — der Server sieht immer nur Chiffretext.
-- **Import aus anderen Apps** — Google Authenticator (Migrations-QR), Aegis (offen und verschlüsselt), 2FAS (offen und verschlüsselt), Authy-Exporte, Microsoft-Authenticator-Konten über otpauth-Links und jede Liste von `otpauth://`-URIs.
-- **Gruppen und Stapelaktionen** — ordne Konten in eigene Gruppen wie Finanzen, Gaming, Social Media oder Entwicklung und lösche oder verschiebe viele Konten auf einmal.
-- **Privatsphärenschutz** — die App verbirgt ihren Inhalt im App-Umschalter und blockiert Screenshots und Bildschirmaufnahmen. Beides lässt sich in den Einstellungen abschalten.
-- **Vollständig lokalisierbar** — jeder Text liegt in JSON-Dateien. Englisch, Russisch, Deutsch, Spanisch, Französisch und vereinfachtes Chinesisch sind dabei, die Systemsprache wird automatisch erkannt und wechselt sofort ohne Neustart. Lege eine neue JSON-Datei in den `languages`-Ordner der App, um eine Sprache ohne Codeänderung hinzuzufügen.
-- **Design auf Vercel-Niveau** — eine minimale Dashboard-Oberfläche auf einem einzigen Designsystem für alle Plattformen: rein schwarzer Hintergrund, haarfeine #262626-Ränder, Inter-Typografie (400–700), Codes in JetBrains Mono, 4/6/8/12px-Radien, 36px-Bedienelemente, 150ms-Ease-out-Übergänge und null Schatten, Verläufe oder Glas. Animationen lassen sich komplett abschalten, und ein optionaler Markenmodus zeigt echte Dienstlogos ([Simple Icons](https://simpleicons.org), CC0) auf Markenfarben.
+- **Einmalcodes.** Zeit- und zählerbasierte Codes (RFC 6238 TOTP, RFC 4226 HOTP) sowie Steam-Codes. Alles wird automatisch aus QR-Codes und Links erkannt; Profis können beim manuellen Anlegen eigene Parameter setzen (8 Stellen, SHA-256/SHA-512, eigenes Intervall).
+- **System-Autofill auf Android.** Die App registriert sich als Autofill-Dienst, sodass Einmalcodes direkt in Login-Formularen angeboten werden.
+- **Korrektur der Uhrabweichung.** Ein eingebauter SNTP-Client misst, wie weit die Geräteuhr abweicht, und korrigiert die Code-Erzeugung, ohne die Systemuhr anzufassen.
+- **Tippfehler-tolerante Suche.** Unscharfes Matching findet „GitHub" auch bei „gthub", die Treffer werden in der Liste hervorgehoben.
+- **Papierkorb.** Gelöschte Konten liegen 30 Tage im Bereich „Zuletzt gelöscht", bevor sie endgültig verschwinden. Ein versehentlicher Tipp kostet keinen Zugang.
+- **Notizen und Wiederherstellungscodes.** Jedes Konto kann freie Notizen und eine Liste von Wiederherstellungscodes tragen, verschlüsselt zusammen mit den Geheimnissen.
+- **Brute-Force-Schutz.** Fehlgeschlagene Entsperrversuche lösen eine progressiv wachsende Verzögerung aus, die App-Neustarts übersteht.
+- **Offline-first.** Keine Cloud, keine Server, keine Konten. Alle Daten bleiben auf dem Gerät.
+- **Starke Verschlüsselung.** Der Tresor ist mit AES-256-GCM versiegelt; der Schlüssel wird per Argon2id aus deinem Passwort abgeleitet. Geräteschlüssel schützen Android Keystore, der Apple-Schlüsselbund mit Secure-Enclave-Biometrie und der Windows-Anmeldeinformationsspeicher.
+- **Biometrische Entsperrung.** Face ID auf iOS, Touch ID auf macOS, Fingerabdruck oder Gesicht auf Android, Schnellentsperrung auf Windows.
+- **Lokale Synchronisierung.** Verschiebe Konten zwischen Geräten über dein eigenes WLAN. Geräte koppeln sich mit einem einmaligen 6-stelligen Code (SPAKE2), der Kanal ist Ende-zu-Ende mit AES-256-GCM verschlüsselt. Nichts verlässt je das lokale Netz.
+- **Verschlüsselte Sicherungen.** Exportiere und importiere passwortgeschützte Sicherungsdateien, lege nach jeder Änderung automatisch eine verschlüsselte Kopie in einem Ordner deiner Wahl ab oder schiebe Sicherungen per WebDAV auf deine eigene Nextcloud/NAS — der Server sieht immer nur Chiffretext.
+- **Import aus anderen Apps.** Google Authenticator (Migrations-QR), Aegis (offen und verschlüsselt), 2FAS (offen und verschlüsselt), Authy-Exporte, Microsoft-Authenticator-Konten über otpauth-Links und jede Liste von `otpauth://`-URIs.
+- **Gruppen und Stapelaktionen.** Ordne Konten in eigene Gruppen wie Finanzen, Gaming, Social Media oder Entwicklung und lösche oder verschiebe viele Konten auf einmal.
+- **Privatsphärenschutz.** Die App verbirgt ihren Inhalt im App-Umschalter und blockiert Screenshots und Bildschirmaufnahmen. Beides lässt sich in den Einstellungen abschalten.
+- **Vollständig lokalisierbar.** Jeder Text liegt in JSON-Dateien. Englisch, Russisch, Deutsch, Spanisch, Französisch und vereinfachtes Chinesisch sind dabei, die Systemsprache wird automatisch erkannt und wechselt sofort ohne Neustart. Lege eine neue JSON-Datei in den `languages`-Ordner der App, um eine Sprache ohne Codeänderung hinzuzufügen.
+- **Design auf Vercel-Niveau.** Eine minimale Dashboard-Oberfläche auf einem einzigen Designsystem für alle Plattformen: rein schwarzer Hintergrund, haarfeine #262626-Ränder, Inter-Typografie (400–700), Codes in JetBrains Mono, 4/6/8/12px-Radien, 36px-Bedienelemente, 150ms-Ease-out-Übergänge und null Schatten, Verläufe oder Glas. Animationen lassen sich komplett abschalten, und ein optionaler Markenmodus zeigt echte Dienstlogos ([Simple Icons](https://simpleicons.org), CC0) auf Markenfarben.
 
 ## Screenshots
 
@@ -181,11 +182,8 @@ cargo test --workspace     # 70 Unit-Tests, inklusive RFC-4226/6238-Vektoren
 
 Das Repository bringt `.editorconfig`, `rustfmt.toml` und eine CI mit, die Formatierung, Lints und Tests bei jedem Push erzwingt.
 
-## Links
-
-- Projekt: [github.com/liwidale/liauth](https://github.com/liwidale/liauth)
-- Entwickler: [github.com/liwidale](https://github.com/liwidale)
-
 ## Lizenz
 
-[MIT](LICENSE) — frei nutzen, ändern und weitergeben.
+[MIT](LICENSE) © 2026 Liwidale
+
+<p align="center"><sub>ゝ made by <a href="https://github.com/liwidale">liwidale</a></sub></p>

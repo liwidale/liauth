@@ -1,42 +1,43 @@
-<div align="center">
+<p align="center">
+  <img src=".github/assets/icon.png" width="96" height="96" alt="LiAuth">
+</p>
 
-# <img width="25%" height="1000" alt="text" src="branding/text.png" />
+<h1 align="center">LiAuth</h1>
 
+<p align="center">
+  <b>你的验证码。你的设备。仅此而已。</b><br>
+  一款面向 Android、iOS、macOS 和 Windows 的现代开源身份验证器。<br>
+  离线优先，端到端加密，基于共享的 Rust 内核构建。
+</p>
 
-**你的验证码。你的设备。仅此而已。**
+<p align="center">
+  <a href="https://github.com/liwidale/liauth/releases/latest"><img src="https://img.shields.io/github/v/release/liwidale/liauth?label=download&color=4c9dff" alt="Download"></a>
+  <a href="https://github.com/liwidale/liauth/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/liwidale/liauth/ci.yml?label=tests" alt="Tests"></a>
+  <img src="https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey" alt="Android, iOS, macOS and Windows">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/liwidale/liauth?color=3ad37e" alt="MIT License"></a>
+</p>
 
-一款面向 Android、iOS、macOS 和 Windows 的现代开源身份验证器。
-离线优先，端到端加密，基于共享的 Rust 内核构建。
+<p align="center"><a href="README.md">English</a> · <a href="README.ru.md">Русский</a> · <a href="README.de.md">Deutsch</a> · <a href="README.es.md">Español</a> · <a href="README.fr.md">Français</a> · 简体中文</p>
 
-[![CI](https://github.com/liwidale/liauth/actions/workflows/ci.yml/badge.svg)](https://github.com/liwidale/liauth/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](LICENSE)
-![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey)
+## 你将获得
 
-[English](README.md) · [Русский](README.ru.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Français](README.fr.md) · 简体中文
-
-</div>
-
----
-
-## 功能
-
-- **一次性验证码** — 基于时间和计数器的验证码（RFC 6238 TOTP、RFC 4226 HOTP），以及 Steam 验证码。一切都能从二维码和链接中自动识别；高级用户在手动添加时仍可自定义参数（8 位、SHA-256/SHA-512、自定义周期）。
-- **Android 系统自动填充** — 应用注册为系统自动填充服务，验证码直接出现在登录表单中。
-- **时钟偏差校正** — 内置 SNTP 客户端测量设备时钟的偏差，并只校正验证码的生成，绝不修改系统时钟。
-- **容错搜索** — 模糊匹配让你输入「gthub」也能找到「GitHub」，匹配的字符会在列表中高亮。
-- **回收站** — 删除的账户会在「最近删除」中保留 30 天才永久消失，误触永远不会让你失去登录方式。
-- **备注与恢复代码** — 每个账户都可以附加自由格式的备注和恢复代码列表，与密钥一起加密存储。
-- **防暴力破解锁** — 解锁失败会触发逐步增长的延迟，且重启应用后依然生效。
-- **离线优先** — 没有云、没有服务器、没有账号。所有数据都留在设备上。
-- **强加密** — 保险库使用 AES-256-GCM 封装；密钥通过 Argon2id 从你的密码派生。设备解锁密钥由 Android Keystore、带 Secure Enclave 生物识别的 Apple 钥匙串以及 Windows 凭据存储保护。
-- **生物识别解锁** — iOS 上的 Face ID、macOS 上的 Touch ID、Android 上的指纹或面容、Windows 上的快速解锁。
-- **本地同步** — 通过你自己的 Wi-Fi 在设备间迁移账户。设备使用一次性 6 位代码（SPAKE2）配对，通道以 AES-256-GCM 端到端加密。任何数据都不会离开本地网络。
-- **加密备份** — 导出和导入受密码保护的备份文件；每次更改后自动在你选择的文件夹保存加密副本；或通过 WebDAV 推送到你自己的 Nextcloud/NAS——服务器只能看到密文。
-- **从其他应用导入** — Google Authenticator（迁移二维码）、Aegis（明文和加密）、2FAS（明文和加密）、Authy 导出、通过 otpauth 链接的 Microsoft Authenticator 账户，以及任何 `otpauth://` URI 列表。
-- **分组与批量操作** — 将账户整理到自定义分组（金融、游戏、社交、开发等），并可一次删除或移动多个账户。
-- **隐私保护** — 应用在任务切换器中隐藏内容，并阻止截图和录屏。两者都可在设置中关闭。
-- **完全可本地化** — 所有文本都在 JSON 文件中。默认提供英语、俄语、德语、西班牙语、法语和简体中文，自动检测系统语言，切换即时生效无需重启。把新的 JSON 文件放进应用的 `languages` 文件夹即可添加语言，无需改动代码。
-- **Vercel 级设计** — 全平台统一设计系统的极简仪表盘风格界面：纯黑背景、#262626 发丝级边框、Inter 字体（400–700）、JetBrains Mono 验证码、4/6/8/12px 圆角、36px 控件、150ms ease-out 过渡，没有阴影、渐变和毛玻璃。动画可完全关闭，可选的品牌图标模式会在品牌色背景上显示真实的服务标志（[Simple Icons](https://simpleicons.org)，CC0）。
+- **一次性验证码。** 基于时间和计数器的验证码（RFC 6238 TOTP、RFC 4226 HOTP），以及 Steam 验证码。一切都能从二维码和链接中自动识别；高级用户在手动添加时仍可自定义参数（8 位、SHA-256/SHA-512、自定义周期）。
+- **Android 系统自动填充。** 应用注册为系统自动填充服务，验证码直接出现在登录表单中。
+- **时钟偏差校正。** 内置 SNTP 客户端测量设备时钟的偏差，并只校正验证码的生成，绝不修改系统时钟。
+- **容错搜索。** 模糊匹配让你输入「gthub」也能找到「GitHub」，匹配的字符会在列表中高亮。
+- **回收站。** 删除的账户会在「最近删除」中保留 30 天才永久消失，误触永远不会让你失去登录方式。
+- **备注与恢复代码。** 每个账户都可以附加自由格式的备注和恢复代码列表，与密钥一起加密存储。
+- **防暴力破解锁。** 解锁失败会触发逐步增长的延迟，且重启应用后依然生效。
+- **离线优先。** 没有云、没有服务器、没有账号。所有数据都留在设备上。
+- **强加密。** 保险库使用 AES-256-GCM 封装；密钥通过 Argon2id 从你的密码派生。设备解锁密钥由 Android Keystore、带 Secure Enclave 生物识别的 Apple 钥匙串以及 Windows 凭据存储保护。
+- **生物识别解锁。** iOS 上的 Face ID、macOS 上的 Touch ID、Android 上的指纹或面容、Windows 上的快速解锁。
+- **本地同步。** 通过你自己的 Wi-Fi 在设备间迁移账户。设备使用一次性 6 位代码（SPAKE2）配对，通道以 AES-256-GCM 端到端加密。任何数据都不会离开本地网络。
+- **加密备份。** 导出和导入受密码保护的备份文件；每次更改后自动在你选择的文件夹保存加密副本；或通过 WebDAV 推送到你自己的 Nextcloud/NAS——服务器只能看到密文。
+- **从其他应用导入。** Google Authenticator（迁移二维码）、Aegis（明文和加密）、2FAS（明文和加密）、Authy 导出、通过 otpauth 链接的 Microsoft Authenticator 账户，以及任何 `otpauth://` URI 列表。
+- **分组与批量操作。** 将账户整理到自定义分组（金融、游戏、社交、开发等），并可一次删除或移动多个账户。
+- **隐私保护。** 应用在任务切换器中隐藏内容，并阻止截图和录屏。两者都可在设置中关闭。
+- **完全可本地化。** 所有文本都在 JSON 文件中。默认提供英语、俄语、德语、西班牙语、法语和简体中文，自动检测系统语言，切换即时生效无需重启。把新的 JSON 文件放进应用的 `languages` 文件夹即可添加语言，无需改动代码。
+- **Vercel 级设计。** 全平台统一设计系统的极简仪表盘风格界面：纯黑背景、#262626 发丝级边框、Inter 字体（400–700）、JetBrains Mono 验证码、4/6/8/12px 圆角、36px 控件、150ms ease-out 过渡，没有阴影、渐变和毛玻璃。动画可完全关闭，可选的品牌图标模式会在品牌色背景上显示真实的服务标志（[Simple Icons](https://simpleicons.org)，CC0）。
 
 ## 截图
 
@@ -181,11 +182,8 @@ cargo test --workspace     # 70 个单元测试，包括 RFC 4226/6238 测试向
 
 仓库自带 `.editorconfig`、`rustfmt.toml` 和 CI，在每次推送时强制执行格式化、静态检查和测试。
 
-## 链接
-
-- 项目：[github.com/liwidale/liauth](https://github.com/liwidale/liauth)
-- 开发者：[github.com/liwidale](https://github.com/liwidale)
-
 ## 许可证
 
-[MIT](LICENSE) — 可自由使用、修改和分发。
+[MIT](LICENSE) © 2026 Liwidale
+
+<p align="center"><sub>ゝ made by <a href="https://github.com/liwidale">liwidale</a></sub></p>

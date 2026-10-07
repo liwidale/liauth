@@ -1,42 +1,43 @@
-<div align="center">
+<p align="center">
+  <img src=".github/assets/icon.png" width="96" height="96" alt="LiAuth">
+</p>
 
-# <img width="25%" height="1000" alt="text" src="branding/text.png" />
+<h1 align="center">LiAuth</h1>
 
+<p align="center">
+  <b>Vos codes. Votre appareil. Rien d'autre.</b><br>
+  Un authentificateur moderne et open source pour Android, iOS, macOS et Windows.<br>
+  Hors ligne d'abord, chiffré de bout en bout, bâti autour d'un cœur Rust partagé.
+</p>
 
-**Vos codes. Votre appareil. Rien d'autre.**
+<p align="center">
+  <a href="https://github.com/liwidale/liauth/releases/latest"><img src="https://img.shields.io/github/v/release/liwidale/liauth?label=download&color=4c9dff" alt="Download"></a>
+  <a href="https://github.com/liwidale/liauth/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/liwidale/liauth/ci.yml?label=tests" alt="Tests"></a>
+  <img src="https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey" alt="Android, iOS, macOS and Windows">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/liwidale/liauth?color=3ad37e" alt="MIT License"></a>
+</p>
 
-Un authentificateur moderne et open source pour Android, iOS, macOS et Windows.
-Hors ligne d'abord, chiffré de bout en bout, bâti autour d'un cœur Rust partagé.
+<p align="center"><a href="README.md">English</a> · <a href="README.ru.md">Русский</a> · <a href="README.de.md">Deutsch</a> · <a href="README.es.md">Español</a> · Français · <a href="README.zh.md">简体中文</a></p>
 
-[![CI](https://github.com/liwidale/liauth/actions/workflows/ci.yml/badge.svg)](https://github.com/liwidale/liauth/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](LICENSE)
-![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey)
+## Ce que vous obtenez
 
-[English](README.md) · [Русский](README.ru.md) · [Deutsch](README.de.md) · [Español](README.es.md) · Français · [简体中文](README.zh.md)
-
-</div>
-
----
-
-## Fonctionnalités
-
-- **Codes à usage unique** — codes basés sur le temps et sur compteur (RFC 6238 TOTP, RFC 4226 HOTP), plus les codes Steam. Tout est détecté automatiquement depuis les codes QR et les liens ; les utilisateurs avancés peuvent définir leurs propres paramètres (8 chiffres, SHA-256/SHA-512, intervalle personnalisé) lors d'un ajout manuel.
-- **Remplissage automatique système sur Android** — l'app s'enregistre comme service d'autofill : les codes sont proposés directement dans les formulaires de connexion.
-- **Correction de la dérive d'horloge** — un client SNTP intégré mesure la dérive de l'horloge de l'appareil et corrige la génération des codes sans jamais toucher à l'horloge du système.
-- **Recherche tolérante aux fautes** — la correspondance floue trouve « GitHub » même si vous tapez « gthub », et les caractères trouvés sont surlignés dans la liste.
-- **Corbeille** — les comptes supprimés reposent 30 jours dans la section des suppressions récentes avant de disparaître pour de bon : un geste malheureux ne coûte jamais un accès.
-- **Notes et codes de récupération** — chaque compte peut porter des notes libres et une liste de codes de récupération, chiffrés avec les secrets.
-- **Verrou anti-force brute** — les tentatives de déverrouillage échouées déclenchent un délai progressif qui survit aux redémarrages de l'app.
-- **Hors ligne d'abord** — pas de cloud, pas de serveurs, pas de comptes. Toutes les données restent sur l'appareil.
-- **Chiffrement fort** — le coffre est scellé en AES-256-GCM ; la clé est dérivée de votre mot de passe avec Argon2id. Les clés de déverrouillage de l'appareil sont protégées par Android Keystore, le trousseau Apple avec biométrie adossée à la Secure Enclave et le magasin d'identifiants de Windows.
-- **Déverrouillage biométrique** — Face ID sur iOS, Touch ID sur macOS, empreinte ou visage sur Android, déverrouillage rapide sur Windows.
-- **Synchronisation locale** — déplacez vos comptes entre appareils via votre propre Wi-Fi. Les appareils s'apparient avec un code à 6 chiffres à usage unique (SPAKE2) et le canal est chiffré de bout en bout en AES-256-GCM. Rien ne quitte jamais le réseau local.
-- **Sauvegardes chiffrées** — exportez et importez des fichiers protégés par mot de passe, conservez automatiquement une copie chiffrée dans le dossier de votre choix après chaque modification, ou poussez les sauvegardes vers votre propre Nextcloud/NAS via WebDAV : le serveur ne voit jamais que du chiffré.
-- **Import depuis d'autres apps** — Google Authenticator (QR de migration), Aegis (clair et chiffré), 2FAS (clair et chiffré), exports Authy, comptes Microsoft Authenticator via liens otpauth et toute liste d'URIs `otpauth://`.
-- **Groupes et actions par lot** — organisez les comptes en groupes personnalisés comme Finances, Jeux, Réseaux ou Développement, et supprimez ou déplacez plusieurs comptes d'un coup.
-- **Protection de la vie privée** — l'app masque son contenu dans le sélecteur d'apps et bloque captures et enregistrements d'écran. Les deux protections se désactivent dans les réglages.
-- **Entièrement localisable** — chaque texte vit dans des fichiers JSON. Anglais, russe, allemand, espagnol, français et chinois simplifié sont fournis, la langue du système est détectée automatiquement et bascule instantanément sans redémarrage. Déposez un nouveau JSON dans le dossier `languages` de l'app pour ajouter une langue sans toucher au code.
-- **Design du niveau de Vercel** — une interface minimale de type dashboard sur un système de design unique pour toutes les plateformes : fond noir pur, bordures fines #262626, typographie Inter (400–700), codes en JetBrains Mono, rayons 4/6/8/12px, contrôles de 36px, transitions 150ms ease-out et zéro ombre, dégradé ou verre. Les animations se désactivent entièrement, et un mode optionnel d'icônes de marque affiche les vrais logos des services ([Simple Icons](https://simpleicons.org), CC0) sur leurs couleurs de marque.
+- **Codes à usage unique.** Codes basés sur le temps et sur compteur (RFC 6238 TOTP, RFC 4226 HOTP), plus les codes Steam. Tout est détecté automatiquement depuis les codes QR et les liens ; les utilisateurs avancés peuvent définir leurs propres paramètres (8 chiffres, SHA-256/SHA-512, intervalle personnalisé) lors d'un ajout manuel.
+- **Remplissage automatique système sur Android.** L'app s'enregistre comme service d'autofill : les codes sont proposés directement dans les formulaires de connexion.
+- **Correction de la dérive d'horloge.** Un client SNTP intégré mesure la dérive de l'horloge de l'appareil et corrige la génération des codes sans jamais toucher à l'horloge du système.
+- **Recherche tolérante aux fautes.** La correspondance floue trouve « GitHub » même si vous tapez « gthub », et les caractères trouvés sont surlignés dans la liste.
+- **Corbeille.** Les comptes supprimés reposent 30 jours dans la section des suppressions récentes avant de disparaître pour de bon : un geste malheureux ne coûte jamais un accès.
+- **Notes et codes de récupération.** Chaque compte peut porter des notes libres et une liste de codes de récupération, chiffrés avec les secrets.
+- **Verrou anti-force brute.** Les tentatives de déverrouillage échouées déclenchent un délai progressif qui survit aux redémarrages de l'app.
+- **Hors ligne d'abord.** Pas de cloud, pas de serveurs, pas de comptes. Toutes les données restent sur l'appareil.
+- **Chiffrement fort.** Le coffre est scellé en AES-256-GCM ; la clé est dérivée de votre mot de passe avec Argon2id. Les clés de déverrouillage de l'appareil sont protégées par Android Keystore, le trousseau Apple avec biométrie adossée à la Secure Enclave et le magasin d'identifiants de Windows.
+- **Déverrouillage biométrique.** Face ID sur iOS, Touch ID sur macOS, empreinte ou visage sur Android, déverrouillage rapide sur Windows.
+- **Synchronisation locale.** Déplacez vos comptes entre appareils via votre propre Wi-Fi. Les appareils s'apparient avec un code à 6 chiffres à usage unique (SPAKE2) et le canal est chiffré de bout en bout en AES-256-GCM. Rien ne quitte jamais le réseau local.
+- **Sauvegardes chiffrées.** Exportez et importez des fichiers protégés par mot de passe, conservez automatiquement une copie chiffrée dans le dossier de votre choix après chaque modification, ou poussez les sauvegardes vers votre propre Nextcloud/NAS via WebDAV : le serveur ne voit jamais que du chiffré.
+- **Import depuis d'autres apps.** Google Authenticator (QR de migration), Aegis (clair et chiffré), 2FAS (clair et chiffré), exports Authy, comptes Microsoft Authenticator via liens otpauth et toute liste d'URIs `otpauth://`.
+- **Groupes et actions par lot.** Organisez les comptes en groupes personnalisés comme Finances, Jeux, Réseaux ou Développement, et supprimez ou déplacez plusieurs comptes d'un coup.
+- **Protection de la vie privée.** L'app masque son contenu dans le sélecteur d'apps et bloque captures et enregistrements d'écran. Les deux protections se désactivent dans les réglages.
+- **Entièrement localisable.** Chaque texte vit dans des fichiers JSON. Anglais, russe, allemand, espagnol, français et chinois simplifié sont fournis, la langue du système est détectée automatiquement et bascule instantanément sans redémarrage. Déposez un nouveau JSON dans le dossier `languages` de l'app pour ajouter une langue sans toucher au code.
+- **Design du niveau de Vercel.** Une interface minimale de type dashboard sur un système de design unique pour toutes les plateformes : fond noir pur, bordures fines #262626, typographie Inter (400–700), codes en JetBrains Mono, rayons 4/6/8/12px, contrôles de 36px, transitions 150ms ease-out et zéro ombre, dégradé ou verre. Les animations se désactivent entièrement, et un mode optionnel d'icônes de marque affiche les vrais logos des services ([Simple Icons](https://simpleicons.org), CC0) sur leurs couleurs de marque.
 
 ## Captures d'écran
 
@@ -181,11 +182,8 @@ cargo test --workspace     # 70 tests unitaires, dont les vecteurs RFC 4226/6238
 
 Le dépôt fournit `.editorconfig`, `rustfmt.toml` et une CI qui impose formatage, lints et tests à chaque push.
 
-## Liens
-
-- Projet : [github.com/liwidale/liauth](https://github.com/liwidale/liauth)
-- Développeur : [github.com/liwidale](https://github.com/liwidale)
-
 ## Licence
 
-[MIT](LICENSE) — libre d'utilisation, de modification et de distribution.
+[MIT](LICENSE) © 2026 Liwidale
+
+<p align="center"><sub>ゝ made by <a href="https://github.com/liwidale">liwidale</a></sub></p>

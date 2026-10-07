@@ -1,42 +1,43 @@
-<div align="center">
+<p align="center">
+  <img src=".github/assets/icon.png" width="96" height="96" alt="LiAuth">
+</p>
 
-# <img width="25%" height="1000" alt="text" src="branding/text.png" />
+<h1 align="center">LiAuth</h1>
 
+<p align="center">
+  <b>Your codes. Your device. Nothing else.</b><br>
+  A modern, open-source authenticator for Android, iOS, macOS and Windows.<br>
+  Offline-first, end-to-end encrypted, built around a shared Rust core.
+</p>
 
-**Your codes. Your device. Nothing else.**
+<p align="center">
+  <a href="https://github.com/liwidale/liauth/releases/latest"><img src="https://img.shields.io/github/v/release/liwidale/liauth?label=download&color=4c9dff" alt="Download"></a>
+  <a href="https://github.com/liwidale/liauth/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/liwidale/liauth/ci.yml?label=tests" alt="Tests"></a>
+  <img src="https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey" alt="Android, iOS, macOS and Windows">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/liwidale/liauth?color=3ad37e" alt="MIT License"></a>
+</p>
 
-A modern, open-source authenticator for Android, iOS, macOS and Windows.
-Offline-first, end-to-end encrypted, built around a shared Rust core.
+<p align="center">English · <a href="README.ru.md">Русский</a> · <a href="README.de.md">Deutsch</a> · <a href="README.es.md">Español</a> · <a href="README.fr.md">Français</a> · <a href="README.zh.md">简体中文</a></p>
 
-[![CI](https://github.com/liwidale/liauth/actions/workflows/ci.yml/badge.svg)](https://github.com/liwidale/liauth/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-white.svg)](LICENSE)
-![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS%20%7C%20macOS%20%7C%20Windows-lightgrey)
+## What you get
 
-English · [Русский](README.ru.md) · [Deutsch](README.de.md) · [Español](README.es.md) · [Français](README.fr.md) · [简体中文](README.zh.md)
-
-</div>
-
----
-
-## Features
-
-- **One-time codes** - time-based and counter-based codes (RFC 6238 TOTP, RFC 4226 HOTP), plus Steam codes. Everything is detected automatically from QR codes and links; power users can still set custom parameters (8 digits, SHA-256/SHA-512, custom periods) when adding codes manually.
-- **System autofill on Android** - the app registers as an autofill service, so one-time codes are offered right in login forms.
-- **Clock drift correction** - a built-in SNTP client measures how far the device clock has drifted and corrects code generation without ever touching the OS clock.
-- **Typo-tolerant search** - fuzzy matching finds "GitHub" even when you type "gthub", and the matched characters are highlighted in the list.
-- **Trash** - deleted accounts rest in a Recently Deleted section for 30 days before disappearing for good, so a mistaken tap never costs a login.
-- **Notes and recovery codes** - every account can carry free-form notes and a list of recovery codes, encrypted together with the secrets.
-- **Anti-brute-force lock** - failed unlock attempts trigger a progressively growing delay that survives app restarts.
-- **Offline-first** - no cloud, no servers, no accounts. All data stays on the device.
-- **Strong encryption** - the vault is sealed with AES-256-GCM; the key is derived from your password with Argon2id. Device unlock keys are protected by Android Keystore, the Apple Keychain with Secure Enclave-backed biometry, and the Windows credential store.
-- **Biometric unlock** - Face ID on iOS, Touch ID on macOS, fingerprint or face on Android, quick unlock on Windows.
-- **Local sync** - move accounts between devices over your own Wi-Fi. Devices pair with a one-time 6-digit code (SPAKE2), and the channel is end-to-end encrypted with AES-256-GCM. Nothing ever leaves the local network.
-- **Encrypted backups** - export and import password-protected backup files, keep an automatic encrypted copy in a folder of your choice after every change, or push backups to your own Nextcloud/NAS over WebDAV - the server only ever sees ciphertext.
-- **Import from other apps** - Google Authenticator (migration QR), Aegis (plain and encrypted), 2FAS (plain and encrypted), Authy exports, Microsoft Authenticator accounts via otpauth links, and any list of `otpauth://` URIs.
-- **Groups and batch actions** - organize accounts into custom groups such as Finance, Gaming, Social Media or Development, and delete or move many accounts at once.
-- **Privacy protection** - the app hides its content in the task switcher and blocks screenshots and screen recording. Both can be turned off in Settings.
-- **Fully localizable** - every string lives in JSON files. English, Russian, German, Spanish, French and Simplified Chinese ship by default, the system language is detected automatically, and the language switches instantly without a restart. Drop a new JSON file into the app's `languages` folder to add a language without touching the code.
-- **Vercel-grade design** - a minimal dashboard-style interface built on a single design system across all platforms: pure black background, hairline #262626 borders, Inter typography (400-700), JetBrains Mono codes, 4/6/8/12px radii, 36px controls, 150ms ease-out transitions and zero shadows, gradients or glass. Animations can be switched off entirely, and an optional brand-icons mode shows real service logos ([Simple Icons](https://simpleicons.org), CC0) on brand-colored backgrounds.
+- **One-time codes.** Time-based and counter-based codes (RFC 6238 TOTP, RFC 4226 HOTP), plus Steam codes. Everything is detected automatically from QR codes and links; power users can still set custom parameters (8 digits, SHA-256/SHA-512, custom periods) when adding codes manually.
+- **System autofill on Android.** The app registers as an autofill service, so one-time codes are offered right in login forms.
+- **Clock drift correction.** A built-in SNTP client measures how far the device clock has drifted and corrects code generation without ever touching the OS clock.
+- **Typo-tolerant search.** Fuzzy matching finds "GitHub" even when you type "gthub", and the matched characters are highlighted in the list.
+- **Trash.** Deleted accounts rest in a Recently Deleted section for 30 days before disappearing for good, so a mistaken tap never costs a login.
+- **Notes and recovery codes.** Every account can carry free-form notes and a list of recovery codes, encrypted together with the secrets.
+- **Anti-brute-force lock.** Failed unlock attempts trigger a progressively growing delay that survives app restarts.
+- **Offline-first.** No cloud, no servers, no accounts. All data stays on the device.
+- **Strong encryption.** The vault is sealed with AES-256-GCM; the key is derived from your password with Argon2id. Device unlock keys are protected by Android Keystore, the Apple Keychain with Secure Enclave-backed biometry, and the Windows credential store.
+- **Biometric unlock.** Face ID on iOS, Touch ID on macOS, fingerprint or face on Android, quick unlock on Windows.
+- **Local sync.** Move accounts between devices over your own Wi-Fi. Devices pair with a one-time 6-digit code (SPAKE2), and the channel is end-to-end encrypted with AES-256-GCM. Nothing ever leaves the local network.
+- **Encrypted backups.** Export and import password-protected backup files, keep an automatic encrypted copy in a folder of your choice after every change, or push backups to your own Nextcloud/NAS over WebDAV - the server only ever sees ciphertext.
+- **Import from other apps.** Google Authenticator (migration QR), Aegis (plain and encrypted), 2FAS (plain and encrypted), Authy exports, Microsoft Authenticator accounts via otpauth links, and any list of `otpauth://` URIs.
+- **Groups and batch actions.** Organize accounts into custom groups such as Finance, Gaming, Social Media or Development, and delete or move many accounts at once.
+- **Privacy protection.** The app hides its content in the task switcher and blocks screenshots and screen recording. Both can be turned off in Settings.
+- **Fully localizable.** Every string lives in JSON files. English, Russian, German, Spanish, French and Simplified Chinese ship by default, the system language is detected automatically, and the language switches instantly without a restart. Drop a new JSON file into the app's `languages` folder to add a language without touching the code.
+- **Vercel-grade design.** A minimal dashboard-style interface built on a single design system across all platforms: pure black background, hairline #262626 borders, Inter typography (400-700), JetBrains Mono codes, 4/6/8/12px radii, 36px controls, 150ms ease-out transitions and zero shadows, gradients or glass. Animations can be switched off entirely, and an optional brand-icons mode shows real service logos ([Simple Icons](https://simpleicons.org), CC0) on brand-colored backgrounds.
 
 ## Screenshots
 
@@ -181,11 +182,8 @@ cargo test --workspace     # 70 unit tests, including RFC 4226/6238 vectors
 
 The repository ships with `.editorconfig`, `rustfmt.toml` and CI that enforces formatting, lints and tests on every push.
 
-## Links
-
-- Project: [github.com/liwidale/liauth](https://github.com/liwidale/liauth)
-- Developer: [github.com/liwidale](https://github.com/liwidale)
-
 ## License
 
-[MIT](LICENSE) - free to use, modify and distribute.
+[MIT](LICENSE) © 2026 Liwidale
+
+<p align="center"><sub>ゝ made by <a href="https://github.com/liwidale">liwidale</a></sub></p>
